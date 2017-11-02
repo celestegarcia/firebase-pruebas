@@ -7,8 +7,18 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-list>
+      <input type="text" [(ngModel)]="newtask.name">
+      <button item-left ion-button (click)="crear()"><ion-icon name="add"></ion-icon></button>
+      
+        <ion-item *ngFor="let task of tasks | async">
+    
+          <input type="text" [(ngModel)]="task.name">
+          
+          <button item-left ion-button color="secondary" (click)="updateTask(task.$key, task.name)"><ion-icon name="refresh"></ion-icon></button>
+          <button item-left ion-button color="danger" (click)="removeTask(task)"><ion-icon name="remove"></ion-icon></button>
+    
+        </ion-item>
+    
+      </ion-list>
 </ion-content>
