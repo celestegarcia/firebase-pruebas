@@ -11,14 +11,34 @@
       <input type="text" [(ngModel)]="newtask.name">
       <button item-left ion-button (click)="crear()"><ion-icon name="add"></ion-icon></button>
       
-        <ion-item *ngFor="let task of tasks | async">
+        <!--<ion-item *ngFor="let task of tasks | async">
     
           <input type="text" [(ngModel)]="task.name">
           
           <button item-left ion-button color="secondary" (click)="updateTask(task.$key, task.name)"><ion-icon name="refresh"></ion-icon></button>
           <button item-left ion-button color="danger" (click)="removeTask(task)"><ion-icon name="remove"></ion-icon></button>
     
-        </ion-item>
+        </ion-item> -->
+        <ion-list>
+          <ion-item-sliding #item *ngFor="let task of tasks | async">
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="task.name"></ion-input>
+            </ion-item>
+            <ion-item-options side="left">
+              <button ion-button (click)="unread(item)">Hecho
+                  <ion-icon name="checkmark-circle"></ion-icon>
+              </button>
+            </ion-item-options>
+        
+            <ion-item-options side="right">
+              <button ion-button (click)="updateTask(task.$key, task.name)" color="secondary">
+                  <ion-icon name="refresh"></ion-icon>
+                Actualizar</button>
+              <button ion-button color="danger" (click)="removeTask(task)"><ion-icon name="trash"></ion-icon>
+                Borrar</button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
     
       </ion-list>
 </ion-content>

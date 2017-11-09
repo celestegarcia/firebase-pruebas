@@ -27,5 +27,7 @@ export class HomePage {
   removeTask(task) {
     this.tasks.remove(task);
   }
+
+  mark
 }
 
