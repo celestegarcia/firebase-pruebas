@@ -1,3 +1,18 @@
 page-home {
-
+    .bg-pendiente{
+        background: lightcyan
+    }
+    
+    .bg-terminados{
+        background: lightblue
+    }
+    
 }
+
+#terminado{
+    text-decoration: line-through;
+}  
+
+ion-card-header{
+    background: lightblue
+        }

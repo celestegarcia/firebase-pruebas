@@ -11,15 +11,16 @@ export class HomePage {
 
   tasks: FirebaseListObservable<any[]>;
 
-  newtask={name:""}
+  newtask={name:"", status:false}
    
   constructor(public navCtrl: NavController, public db: AngularFireDatabase) {
     this.tasks = db.list('/tasks');
-  
+    
   }
   crear() {
     this.tasks.push(this.newtask); 
     this.newtask.name="";
+    this.newtask.status=false;
   }
   updateTask(key, name) {
     this.tasks.update(key, {name: name});
@@ -27,6 +28,9 @@ export class HomePage {
   removeTask(task) {
     this.tasks.remove(task);
   }
+
+  readyTask(task){
+       this.tasks.update(task.$key, {status: !task.status});  }
 
   mark
 }
